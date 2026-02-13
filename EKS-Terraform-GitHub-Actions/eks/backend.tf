@@ -1,0 +1,21 @@
+terraform {
+  required_version = "~> 1.14.3"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.49.0"
+    }
+  }
+
+  backend "s3" {
+    bucket         = "mern-eks-cluster-0405341"
+    region         = "eu-west-2"
+    key            = "eks/terraform.tfstate"
+    encrypt        = true
+    use_lockfile   = true
+  }
+}
+
+provider "aws" {
+  region = var.aws-region
+}
